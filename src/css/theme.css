@@ -2,36 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.l-container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-}
+/*
+  TODO: Add best practices note here re: using @layer blocks
+*/
 
-@media (min-width: 480px) {
-  .l-container {
-    max-width: 25rem; /* 400px */
+
+@layer components {
+  .c-button {
+    @apply 
+      bg-indigo-700
+      text-gray-50
+      inline-flex
+      py-3
+      px-6
+      font-bold
+      border-2
+      border-indigo-700
+      hover:bg-indigo-900
+      rounded
+      transition-colors;
   }
-}
-
-@media (min-width: 768px) {
-  .l-container {
-    max-width: 40rem; /* 640px */
-  }
-}
-
-@media (min-width: 1280px) {
-  .l-container {
-    max-width: 64rem; /* 1024px */
-  }
-}
-
-@media (min-width: 1550px) {
-  .l-container {
-    max-width: 90rem; /* 1440px */
-  }
-}
-
-.c-article {
-  margin-bottom: 1rem;
 }
