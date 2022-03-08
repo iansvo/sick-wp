@@ -1,0 +1,45 @@
+{
+  "name": "sick-wp",
+  "description": "Sick-WP is a modern, developer-friendly WordPress theme with straightforward opinions and best practices baked in. Its freakin' sick.",
+  "version": "1.0.0",
+  "main": "src/js/theme.js",
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "concurrently": "^7.0.0",
+    "esbuild": "^0.14.25",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-jpegoptim": "^8.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^10.0.1",
+    "imagemin-webp": "^7.0.0",
+    "postcss": "^8.4.8",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.0.2",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "build:js": "./node_modules/.bin/esbuild ./src/js/theme.js --bundle --outfile=./dist/js/theme.min.js --minify --sourcemap --target=es2020",
+    "watch:js": "./node_modules/.bin/esbuild ./src/js/theme.js --bundle --outfile=./dist/js/theme.min.js --minify --sourcemap --target=es2020 --watch",
+    "build:css": "postcss src/css/theme.css -o dist/css/theme.css",
+    "watch:css": "postcss src/css/theme.css -o dist/css/theme.css --watch",
+    "images:png": "imagemin src/images/opt/**/*.png -out-dir=dist/images --plugin=pngquant",
+    "images:svg": "imagemin src/images/opt/**/*.svg -out-dir=dist/images --plugin=svgo",
+    "images:jpg": "imagemin src/images/opt/**/*.{jpeg,jpg} -out-dir=dist/images --plugin=jpegoptim",
+    "images:webp": "imagemin src/images/webp/**/*.{jpeg,png} -out-dir=dist/images --plugin=webp",
+    "images": "concurrently \"npm run images:png\" \"npm run images:svg\" \"npm run images:jpg\" \"npm run images:webp\"",
+    "clean": "rimraf dist",
+    "build": "concurrently \"npm run clean\" \"npm run build:js\" \"npm run build:css\" \"npm run images\"",
+    "dev": "concurrently \"npm run watch:js\" \"npm run watch:css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oyova-iansvo/sick-wp.git"
+  },
+  "author": "Ian Svoboda (@iansvo)",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/oyova-iansvo/sick-wp/issues"
+  },
+  "homepage": "https://github.com/oyova-iansvo/sick-wp#readme"
+}
