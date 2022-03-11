@@ -6,3 +6,4 @@ add_action('after_theme_setup', function() {
     'footer-menu' => __( 'Footer Menu', 'sick-wp' ),
   ]);
 });
+
